@@ -6,6 +6,10 @@ export default defineNuxtConfig({
 		"@nuxt/ui",
 		"@nuxt/image",
 		"shadcn-nuxt",
+		'@nuxtjs/seo',      // объединённая техн. SEO-конфигурация
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
+		'nuxt-simple-sitemap',
 		["@nuxtjs/google-fonts",
 			{
 				families: {
@@ -32,4 +36,55 @@ export default defineNuxtConfig({
 	pinia: {
 		storesDirs: ['./store/**'],
 	},
+	app: {
+    head: {
+      titleTemplate: '%s · CRM System',
+    	title: 'CRM System',
+      htmlAttrs: { lang: 'ru' },
+      meta: [
+        { name: 'description', content: 'CRM System — панели, клиенты, сделки' },
+        { name: 'robots', content: 'index, follow' },
+        // Open Graph / Twitter
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'CRM System' },
+        { property: 'og:title', content: 'CRM System' },
+        { property: 'og:description', content: 'CRM System — панели, клиенты, сделки' },
+        { property: 'og:image', content: 'https://https://crm-system-nuxt-coral.vercel.app/og-default.png' },
+        { name: 'twitter:card', content: 'summary_large_image' }
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://https://crm-system-nuxt-coral.vercel.app/' }
+      ]
+    }
+  },
+
+  // Sitemap
+  site: {
+    url: 'https://https://crm-system-nuxt-coral.vercel.app',
+  },
+
+  sitemap: {
+    autoLastmod: true,
+    defaults: {
+      changefreq: 'weekly',
+      priority: 0.7,
+    },
+    exclude: ['/admin/**', '/auth/**', '/api/**']
+  },
+
+  robots: {
+    groups: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/admin', '/auth'],
+      }
+    ]
+  },
+
+  // Кеш/ISR на Vercel (ускоряем индекс и LCP)
+  routeRules: {
+    '/': { isr: 60 },          // обновлять статику раз в 60 сек
+    '/**': { isr: 300 }
+  }
 })

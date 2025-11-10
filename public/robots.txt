@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://https://crm-system-nuxt-coral.vercel.app/sitemap.xml
