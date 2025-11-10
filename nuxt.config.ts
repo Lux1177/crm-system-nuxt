@@ -8,7 +8,6 @@ export default defineNuxtConfig({
 		"shadcn-nuxt",
 		'@nuxtjs/seo',      // объединённая техн. SEO-конфигурация
     '@nuxtjs/robots',
-    '@nuxtjs/sitemap',
 		'nuxt-simple-sitemap',
 		["@nuxtjs/google-fonts",
 			{
