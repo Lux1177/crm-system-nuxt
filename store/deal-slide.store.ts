@@ -1,5 +1,5 @@
-import type {ICard} from "~/components/kanban/kanban.types";
-import {state} from "sucrase/dist/types/parser/traverser/base";
+import { defineStore } from 'pinia'
+import type { ICard } from "~/components/kanban/kanban.types"
 
 const defaultValue: { card: ICard | null; isOpen: boolean } = {
 	card: null,
